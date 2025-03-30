@@ -15,9 +15,16 @@
     "jest": "^27.5.1",
     "supertest": "^6.3.4"
   },
- "jest": {
-"testEnvironment": "node"
-},
+  "jest": {
+      "testEnvironment": "node",
+      "coveragePathIgnorePatterns": [
+        "/node_modules/"
+      ],
+      "reporters": [
+        "default",
+        "jest-junit"
+      ]
+  },
 "engines": {
 "node": ">=18"
 }

@@ -26,13 +26,13 @@ app.post('/tasks', (req, res) => {
   if (!req.body.title) {
     return res.status(400).send('🛑 El título es requerido');
   }
-  
+
   const newTask = {
     id: tasks.length + 1,
     title: req.body.title,
     completed: req.body.completed || false
   };
-  
+
   tasks.push(newTask);
   res.status(201).json(newTask);
 });
@@ -41,10 +41,10 @@ app.post('/tasks', (req, res) => {
 app.put('/tasks/:id', (req, res) => {
   const task = tasks.find(t => t.id === parseInt(req.params.id));
   if (!task) return res.status(404).send('⛔ Tarea no encontrada');
-  
+
   task.title = req.body.title || task.title;
   task.completed = req.body.completed !== undefined ? req.body.completed : task.completed;
-  
+
   res.json(task);
 });
 
@@ -52,7 +52,7 @@ app.put('/tasks/:id', (req, res) => {
 app.delete('/tasks/:id', (req, res) => {
   const taskIndex = tasks.findIndex(t => t.id === parseInt(req.params.id));
   if (taskIndex === -1) return res.status(404).send('⛔ Tarea no encontrada');
-  
+
   tasks.splice(taskIndex, 1);
   res.send('🚮 Tarea eliminada');
 });
