@@ -14,7 +14,7 @@ pipeline {
                     extensions: [],
                     userRemoteConfigs: [[
                         url: env.REPO_URL,
-                        credentialsId: 'github-token' // Usa el ID de tus credenciales
+                        credentialsId: 'github-token'
                     ]]
                 ])
             }
@@ -22,20 +22,20 @@ pipeline {
         
         stage('Install dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'  // Usa bat en lugar de sh para Windows
             }
         }
         
         stage('Run tests') {
             steps {
-                sh 'npm test'
-                junit '**/test-results.xml' // Asegúrate de que Jest genere este archivo
+                bat 'npm test'  // Usa bat en lugar de sh para Windows
+                junit '**/test-results.xml'
             }
         }
         
         stage('Build Docker image') {
             steps {
-                sh 'docker build -t task-api .'
+                bat 'docker build -t task-api .'  // Usa bat en lugar de sh para Windows
             }
         }
     }
@@ -43,6 +43,7 @@ pipeline {
     post {
         always {
             junit '**/test-results.xml'
+            archiveArtifacts artifacts: '**/coverage/**', allowEmptyArchive: true
         }
     }
 }

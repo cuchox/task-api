@@ -13,19 +13,28 @@
   "devDependencies": {
     "eslint": "^9.23.0",
     "jest": "^27.5.1",
+    "jest-junit": "^16.0.0",
     "supertest": "^6.3.4"
   },
   "jest": {
-      "testEnvironment": "node",
-      "coveragePathIgnorePatterns": [
-        "/node_modules/"
-      ],
-      "reporters": [
-        "default",
-        "jest-junit"
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "reporters": [
+      "default",
+      [
+        "jest-junit",
+        {
+          "outputDirectory": "test-results",
+          "outputName": "junit.xml"
+        }
       ]
-  },
-"engines": {
-"node": ">=18"
-}
+    ],
+    "collectCoverage": true,
+    "coverageReporters": [
+      "lcov",
+      "text-summary"
+    ]
+  }
 }
