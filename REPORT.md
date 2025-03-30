@@ -13,8 +13,8 @@ Despliegue automatizado de la API de tareas usando Jenkins y Docker.
 - Error en los tests por diferencia de versión de Node (resuelto especificando versión exacta en Dockerfile)
 
 ## Results
-![Captura del pipeline exitoso](screenshots/pipeline-success.png)
-![Captura de tests pasando](screenshots/tests-passed.png)
+![Captura del pipeline exitoso]
+![Captura de tests pasando]
 task-api/
 ├── .gitignore
 ├── README.md
