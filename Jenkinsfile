@@ -1,14 +1,23 @@
 pipeline {
-  agent any
-
-  stages {
-    stage('Checkout') {
-      steps {
-        // Clonar repositorio desde GitHub
-        git 'https://github.com/cuchox/task-api.git'
-      }
+    agent any
+    environment {
+        REPO_URL = 'https://github.com/cuchox/task-api.git'
     }
-
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']], // Asegúrate de usar "main"
+                    extensions: [],
+                    userRemoteConfigs: [[
+                        url: env.REPO_URL,
+                        credentialsId: 'github-token' // Usa tu ID de credenciales
+                    ]]
+                ])
+            }
+        }
+        
     stage('Install dependencies') {
       steps {
         // Instalar dependencias con npm
