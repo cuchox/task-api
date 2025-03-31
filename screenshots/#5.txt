@@ -1,0 +1,232 @@
+Lanzada por el usuario unknown or anonymous
+Obtained Jenkinsfile from git https://github.com/cuchox/task-api
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins  in C:\ProgramData\Jenkins\.jenkins\workspace\Pipeline_desafio
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git.exe rev-parse --resolve-git-dir C:\ProgramData\Jenkins\.jenkins\workspace\Pipeline_desafio\.git # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url https://github.com/cuchox/task-api # timeout=10
+Fetching upstream changes from https://github.com/cuchox/task-api
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.48.1.windows.1'
+ > git.exe fetch --tags --force --progress -- https://github.com/cuchox/task-api +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+Checking out Revision eb7e4ad267623308dfacd2fc47bc1f96ba4bc264 (refs/remotes/origin/main)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f eb7e4ad267623308dfacd2fc47bc1f96ba4bc264 # timeout=10
+Commit message: "Update Jenkinsfile"
+ > git.exe rev-list --no-walk a150e8c389c6a185ce650196355d8f93e178b943 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+Warning: CredentialId "github-token" could not be found.
+ > git.exe rev-parse --resolve-git-dir C:\ProgramData\Jenkins\.jenkins\workspace\Pipeline_desafio\.git # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url https://github.com/cuchox/task-api.git # timeout=10
+Fetching upstream changes from https://github.com/cuchox/task-api.git
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.48.1.windows.1'
+ > git.exe fetch --tags --force --progress -- https://github.com/cuchox/task-api.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+Checking out Revision eb7e4ad267623308dfacd2fc47bc1f96ba4bc264 (refs/remotes/origin/main)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f eb7e4ad267623308dfacd2fc47bc1f96ba4bc264 # timeout=10
+Commit message: "Update Jenkinsfile"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Install dependencies)
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Pipeline_desafio>npm install 
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+npm warn deprecated domexception@2.0.1: Use your platform's native DOMException instead
+npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+npm warn deprecated superagent@8.1.2: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
+
+added 482 packages, and audited 483 packages in 5s
+
+67 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run tests)
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Pipeline_desafio>npm test 
+
+> task-api@1.0.0 test
+> jest --coverage --forceExit
+
+PASS test/app.test.js
+  API de Tareas
+    GET /tasks
+      âˆš deberÃ­a retornar todas las tareas (43 ms)
+    GET /tasks/:id
+      âˆš deberÃ­a retornar una tarea especÃ­fica cuando existe (6 ms)
+      âˆš deberÃ­a retornar 404 cuando la tarea no existe (6 ms)
+    POST /tasks
+      âˆš deberÃ­a crear una nueva tarea (20 ms)
+      âˆš deberÃ­a retornar 400 si falta el tÃ­tulo (4 ms)
+    PUT /tasks/:id
+      âˆš deberÃ­a actualizar una tarea existente (4 ms)
+      âˆš deberÃ­a retornar 404 si la tarea no existe (5 ms)
+    DELETE /tasks/:id
+      âˆš deberÃ­a eliminar una tarea existente (5 ms)
+      âˆš deberÃ­a retornar 404 si la tarea no existe (6 ms)
+
+
+=============================== Coverage summary ===============================
+Statements   : 94.73% ( 36/38 )
+Branches     : 81.25% ( 13/16 )
+Functions    : 88.88% ( 8/9 )
+Lines        : 93.75% ( 30/32 )
+================================================================================
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        1.331 s
+Ran all test suites.
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker image)
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Pipeline_desafio>docker build -t task-api . 
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 150B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/node:14
+#2 DONE 1.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 ...
+
+#5 [1/5] FROM docker.io/library/node:14@sha256:a158d3b9b4e3fa813fa6c8c590b8f0a860e015ad4e59bbce5744d2f6fd8461aa
+#5 resolve docker.io/library/node:14@sha256:a158d3b9b4e3fa813fa6c8c590b8f0a860e015ad4e59bbce5744d2f6fd8461aa 0.0s done
+#5 DONE 0.1s
+
+#4 [internal] load build context
+#4 transferring context: 45.91MB 5.0s done
+#4 DONE 5.1s
+
+#6 [2/5] WORKDIR /app
+#6 CACHED
+
+#7 [3/5] COPY package*.json ./
+#7 DONE 0.9s
+
+#8 [4/5] RUN npm install
+#8 2.148 npm WARN read-shrinkwrap This version of npm is compatible with lockfileVersion@1, but package-lock.json was generated for lockfileVersion@3. I'll try to do my best with it!
+#8 4.948 npm WARN deprecated superagent@8.1.2: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
+#8 5.075 npm WARN deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+#8 7.090 npm WARN deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+#8 9.460 npm WARN deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+#8 12.16 npm WARN deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+#8 12.36 npm WARN deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+#8 12.38 npm WARN deprecated domexception@2.0.1: Use your platform's native DOMException instead
+#8 23.34 npm WARN notsup Unsupported engine for eslint@9.23.0: wanted: {"node":"^18.18.0 || ^20.9.0 || >=21.1.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.34 npm WARN notsup Not compatible with your version of node/npm: eslint@9.23.0
+#8 23.34 npm WARN notsup Unsupported engine for @eslint/config-array@0.19.2: wanted: {"node":"^18.18.0 || ^20.9.0 || >=21.1.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.34 npm WARN notsup Not compatible with your version of node/npm: @eslint/config-array@0.19.2
+#8 23.35 npm WARN notsup Unsupported engine for @eslint/config-helpers@0.2.0: wanted: {"node":"^18.18.0 || ^20.9.0 || >=21.1.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.35 npm WARN notsup Not compatible with your version of node/npm: @eslint/config-helpers@0.2.0
+#8 23.35 npm WARN notsup Unsupported engine for @eslint/core@0.12.0: wanted: {"node":"^18.18.0 || ^20.9.0 || >=21.1.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.35 npm WARN notsup Not compatible with your version of node/npm: @eslint/core@0.12.0
+#8 23.36 npm WARN notsup Unsupported engine for @eslint/eslintrc@3.3.1: wanted: {"node":"^18.18.0 || ^20.9.0 || >=21.1.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.36 npm WARN notsup Not compatible with your version of node/npm: @eslint/eslintrc@3.3.1
+#8 23.36 npm WARN notsup Unsupported engine for @eslint/js@9.23.0: wanted: {"node":"^18.18.0 || ^20.9.0 || >=21.1.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.36 npm WARN notsup Not compatible with your version of node/npm: @eslint/js@9.23.0
+#8 23.37 npm WARN notsup Unsupported engine for @humanfs/node@0.16.6: wanted: {"node":">=18.18.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.37 npm WARN notsup Not compatible with your version of node/npm: @humanfs/node@0.16.6
+#8 23.37 npm WARN notsup Unsupported engine for @eslint/plugin-kit@0.2.7: wanted: {"node":"^18.18.0 || ^20.9.0 || >=21.1.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.37 npm WARN notsup Not compatible with your version of node/npm: @eslint/plugin-kit@0.2.7
+#8 23.38 npm WARN notsup Unsupported engine for @humanwhocodes/retry@0.4.2: wanted: {"node":">=18.18"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.38 npm WARN notsup Not compatible with your version of node/npm: @humanwhocodes/retry@0.4.2
+#8 23.38 npm WARN notsup Unsupported engine for eslint-scope@8.3.0: wanted: {"node":"^18.18.0 || ^20.9.0 || >=21.1.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.38 npm WARN notsup Not compatible with your version of node/npm: eslint-scope@8.3.0
+#8 23.39 npm WARN notsup Unsupported engine for eslint-visitor-keys@4.2.0: wanted: {"node":"^18.18.0 || ^20.9.0 || >=21.1.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.39 npm WARN notsup Not compatible with your version of node/npm: eslint-visitor-keys@4.2.0
+#8 23.39 npm WARN notsup Unsupported engine for espree@10.3.0: wanted: {"node":"^18.18.0 || ^20.9.0 || >=21.1.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.39 npm WARN notsup Not compatible with your version of node/npm: espree@10.3.0
+#8 23.39 npm WARN notsup Unsupported engine for file-entry-cache@8.0.0: wanted: {"node":">=16.0.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.39 npm WARN notsup Not compatible with your version of node/npm: file-entry-cache@8.0.0
+#8 23.40 npm WARN notsup Unsupported engine for @eslint/object-schema@2.1.6: wanted: {"node":"^18.18.0 || ^20.9.0 || >=21.1.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.40 npm WARN notsup Not compatible with your version of node/npm: @eslint/object-schema@2.1.6
+#8 23.41 npm WARN notsup Unsupported engine for globals@14.0.0: wanted: {"node":">=18"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.41 npm WARN notsup Not compatible with your version of node/npm: globals@14.0.0
+#8 23.41 npm WARN notsup Unsupported engine for @humanwhocodes/retry@0.3.1: wanted: {"node":">=18.18"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.41 npm WARN notsup Not compatible with your version of node/npm: @humanwhocodes/retry@0.3.1
+#8 23.42 npm WARN notsup Unsupported engine for @humanfs/core@0.19.1: wanted: {"node":">=18.18.0"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.42 npm WARN notsup Not compatible with your version of node/npm: @humanfs/core@0.19.1
+#8 23.42 npm WARN notsup Unsupported engine for flat-cache@4.0.1: wanted: {"node":">=16"} (current: {"node":"14.21.3","npm":"6.14.18"})
+#8 23.42 npm WARN notsup Not compatible with your version of node/npm: flat-cache@4.0.1
+#8 23.43 npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@^2.3.2 (node_modules/jest-haste-map/node_modules/fsevents):
+#8 23.43 npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+#8 23.44 npm WARN task-api@1.0.0 No description
+#8 23.45 npm WARN task-api@1.0.0 No repository field.
+#8 23.45 npm WARN task-api@1.0.0 No license field.
+#8 23.45 
+#8 23.46 added 482 packages from 340 contributors and audited 483 packages in 21.351s
+#8 23.65 
+#8 23.65 67 packages are looking for funding
+#8 23.65   run `npm fund` for details
+#8 23.65 
+#8 23.65 found 0 vulnerabilities
+#8 23.65 
+#8 DONE 24.3s
+
+#9 [5/5] COPY . .
+#9 DONE 2.0s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 4.0s done
+#10 exporting manifest sha256:9b429165988e386759def9dc2fe8a5c9e9eb397d4c832891c781c039006e5bbb 0.0s done
+#10 exporting config sha256:9122bddfea883a860bc4efcbd300672a170cf7d006ad3276208f2fcce3282f06 0.0s done
+#10 exporting attestation manifest sha256:c418fb5625ae593f318118fc30977f0dd0258949596776ef2e57cb6dce6e278e 0.0s done
+#10 exporting manifest list sha256:01e90dac243edd731a606de0287787834169fbce7fbaead145ab5454f75a8c99 0.0s done
+#10 naming to docker.io/library/task-api:latest done
+#10 unpacking to docker.io/library/task-api:latest
+#10 unpacking to docker.io/library/task-api:latest 5.5s done
+#10 DONE 9.6s
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
