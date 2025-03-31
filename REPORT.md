@@ -1,4 +1,23 @@
+```markdown
 # Pipeline Execution Report
+
+## Summary
+Despliegue automatizado de la API de tareas usando Jenkins y Docker.
+
+## Steps
+- Git inicializado y conectado a GitHub.
+- Dockerfile configurado para contenerizar la API.
+- Jenkins clona, instala, testea y crea imagen Docker.
+
+## Issues Encountered
+- *[Aquí puedes añadir problemas encontrados]*
+
+## Results
+- *[Capturas del pipeline exitoso y ejecución de pruebas]*
+```
+
+
+<!-- # Pipeline Execution Report
 
 ## Summary
 Despliegue automatizado de la API de tareas usando Jenkins y Docker.
@@ -28,4 +47,4 @@ task-api/
 │   ├── pipeline-success.png
 │   └── tests-passed.png
 └── tests/
-    └── app.test.js
+    └── app.test.js -->
