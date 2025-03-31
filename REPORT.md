@@ -34,17 +34,3 @@ Despliegue automatizado de la API de tareas usando Jenkins y Docker.
 ## Results
 ![Captura del pipeline exitoso]
 ![Captura de tests pasando]
-task-api/
-├── .gitignore
-├── README.md
-├── REPORT.md
-├── Dockerfile
-├── Jenkinsfile
-├── app.js
-├── package.json
-├── package-lock.json
-├── screenshots/
-│   ├── pipeline-success.png
-│   └── tests-passed.png
-└── tests/
-    └── app.test.js -->
